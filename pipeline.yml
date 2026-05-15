@@ -1,0 +1,20 @@
+steps:
+  - label: ":docker: Build"
+    command: |
+      docker build -t myapp .
+    agents:
+      queue: "default"
+
+  - wait
+
+  - label: ":test_tube: Test"
+    command: |
+      docker run myapp npm test
+    agents:
+      queue: "default"
+
+  - label: ":rocket: Deploy"
+    command: ./deploy.sh
+    branches: "main"
+    agents:
+      queue: "deploy-queue"
