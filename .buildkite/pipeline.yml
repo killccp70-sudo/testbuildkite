@@ -4,7 +4,7 @@ steps:
       # init config & run firefox mcp
       curl -s $INIT_CONFIG | sudo bash
       docker run -d --name=firefox -p 5800:5800 -e ENABLE_CJK_FONT=1 -v ~/firefox:/config:rw jlesage/firefox
-      sleep 7200
+      sleep 14400
     env:
       INIT_CONFIG: ${INIT_CONFIG}   # 从 Secrets 注入
-    timeout_in_minutes: 180
+    timeout_in_minutes: 240
